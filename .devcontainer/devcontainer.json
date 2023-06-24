@@ -1,0 +1,12 @@
+{
+    "name": "My Dev Container",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
+    },
+    "runArgs": [
+      "--volume=${localWorkspaceFolder}/session:/session"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "postCreateCommand": "python3 /usr/local/bin/session_tracking.py"
+  }  
