@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codespace-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codespace
+  template:
+    metadata:
+      labels:
+        app: codespace
+    spec:
+      containers:
+        - name: codespace
+          image: gcr.io/smart-apps/gcp-k8s-codespace:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: session-storage
+              mountPath: /session
+      volumes:
+        - name: session-storage
+          emptyDir: {}
